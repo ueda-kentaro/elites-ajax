@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>kadai</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+  <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>sex</th>
+        </tr>
+      </thead>
+      <tbody id="tBody">
+        <tr>
+          <td>kuwata</td>
+          <td>man</td>
+        </tr>
+        <tr>
+          <td>hanako</td>
+          <td>woman</td>
+        </tr>
+        <tr>
+          <td>taro</td>
+          <td>man</td>
+        </tr>
+      </tbody>
+    </table>
+    <button id="button" class="btn">データ取得</button>
+  </div>
+  <script>
+    $('#button').on('click', function(){
+      $.ajax({
+        url: './users.json',
+        type: 'get',
+        dataType : 'json',
+        success: function(res){
+          $.each(res, function(i, val){
+            $('table').append(
+                $('<tr></tr>')
+                .append($('<td></td>').text(val.name))
+                .append($('<td></td>').text(val.sex))
+            );
+            console.log(val);
+          });
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown){
+          console.log(XMLHttpRequest);
+          console.log(textStatus);
+          console.log(errorThrown);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
