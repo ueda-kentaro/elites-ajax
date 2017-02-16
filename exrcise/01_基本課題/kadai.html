@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>kadai</title>
+        <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    </head>
+    <body>
+        <button id="button">データ取得</button>
+        <script>
+            $('#button').on('click' , function(){
+               $.ajax({
+                url: './kadai.json',
+                type:'get',
+                dataType:'json',
+                success:function(res){
+                    console.log(res);
+                },
+                error: function(XMLHttpRequest,textSatus,errorThrown){
+                    console.log(XMLHttpRequest);
+                    console.log(textSatus);
+                    console.log(errorThrown);
+                }
+               });
+            });
+        </script>
+    </body>
+</html>
